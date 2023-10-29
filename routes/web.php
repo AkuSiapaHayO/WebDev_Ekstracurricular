@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", [EkstracurricularController::class, "showAllEkstracurricular"]);
+Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
