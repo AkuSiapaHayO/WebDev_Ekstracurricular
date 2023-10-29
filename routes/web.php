@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EkstracurricularController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"]);
+Route::get("/viewStudent", [StudentController::class,"showAllStudents"]);
+Route::get("/student/{id}", [StudentController::class,"showStudentDetails"]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
