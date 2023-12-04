@@ -11,14 +11,12 @@ class StudentController extends Controller
     {
 
         if ($request->has('search')) {
-            $students = Student::where('name', 'like', '%'.$request->search.'%')->get();
+            $students = Student::where('name', 'like', '%'.$request->search.'%')->orWhere('nationality', 'like', '%'.$request->search.'%')->paginate(10)->withQueryString();
         } else {
-            $students = Student::paginate(20);
+            $students = Student::paginate(10);
         }
 
         return view("viewStudents", [
-            "pagetitle"=> "Students",
-            "maintitle" => "Students",
             "students"=> $students
         ]);
     }

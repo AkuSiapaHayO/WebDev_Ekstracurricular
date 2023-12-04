@@ -1,6 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
-@section('layout')
+@section('content')
     <div class="card m-4 mt-5">
         <div class="card-body">
 

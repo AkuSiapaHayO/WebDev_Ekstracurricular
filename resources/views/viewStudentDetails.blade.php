@@ -1,6 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
-@section('layout')
+@section('content')
     <div class="card mt-5 m-4">
         <div class="card-body p-5">
             <h2 class="text-center">{{ $student->name }}'s Details</h2>

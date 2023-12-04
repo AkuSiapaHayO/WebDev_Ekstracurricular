@@ -9,8 +9,6 @@ class EkstracurricularController extends Controller
     public function showAllEkstracurriculars()
     {
         return view("viewEkstracurricular",[
-            "pagetitle"=>"Ekstracurricular",
-            "maintitle"=>"Ekstracurricular",
             "ekstracurriculars"=> Ekstracurricular::all()
         ]);
     }

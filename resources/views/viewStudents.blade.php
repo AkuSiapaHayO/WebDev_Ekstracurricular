@@ -1,6 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
-@section('layout')
+@section('content')
     <div class="card mt-5 m-4">
         <div class="card-body">
             <form action="/viewStudent" method="GET" class="form-inline w-25 d-flex gap-2">
