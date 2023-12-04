@@ -3,6 +3,10 @@
 @section('layout')
     <div class="card mt-5 m-4">
         <div class="card-body">
+            <form action="/viewStudent" method="GET" class="form-inline w-25 d-flex gap-2">
+                <input class="form-control" type="search" name="search" placeholder="Search">
+                <button type="submit" class="btn btn-outline-success">Search</button>
+            </form>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -39,6 +43,9 @@
                     @php($i++)
                 @endforeach
             </table>
+            <div>
+                {{ $students->links() }}
+            </div>
         </div>
     </div>
 @endsection
