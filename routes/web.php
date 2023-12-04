@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EkstracurricularController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"]);
-Route::get("/viewStudent", [StudentController::class,"showAllStudents"]);
-Route::get("/student/{id}", [StudentController::class,"showStudentDetails"]);
+Route::get("/viewEkstracurricular", [EkstracurricularController::class, "showAllEkstracurriculars"])->middleware('auth')->name('viewEkstracurricular');
+Route::get("/", [StudentController::class,"showAllStudents"])->name('viewStudent');
+Route::get("/student/{id}", [StudentController::class,"showStudentDetails"])->middleware('auth')->name('viewStudentDetails');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,6 +33,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

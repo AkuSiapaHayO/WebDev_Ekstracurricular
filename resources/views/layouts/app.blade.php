@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
 
@@ -28,8 +28,12 @@
                             List
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/viewStudent">Student</a></li>
-                            <li><a class="dropdown-item" href="/">Ekstracurricular</a></li>
+                            @Auth
+                                @if (Auth::user()->isAdmin() || Auth::user()->isEditor())
+                                    <li><a class="dropdown-item" href="/viewEkstracurricular">Ekstracurricular</a></li>
+                                @endif
+                            @endAuth
+                            <li><a class="dropdown-item" href="/">Student</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -49,13 +53,14 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
@@ -73,11 +78,11 @@
 
     <div class="mt-5">
 
-        @yield('content')    
+        @yield('content')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
 
 </body>
 
