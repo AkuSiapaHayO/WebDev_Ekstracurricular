@@ -17,10 +17,15 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get("/viewEkstracurricular", [EkstracurricularController::class, "showAllEkstracurriculars"])->middleware('auth')->name('viewEkstracurricular');
-Route::get("/", [StudentController::class,"showAllStudents"])->name('viewStudent');
-Route::get("/student/{id}", [StudentController::class,"showStudentDetails"])->middleware('auth')->name('viewStudentDetails');
+Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"])->name('viewEkstracurricular');
+Route::group([
+    'middleware' => 'admin',
+    'prefix' => 'admin',
+    'as' => 'admin'
+], function () {
+    Route::get("/viewStudent", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
+    Route::get("/student/{id}", [StudentController::class,"showStudentDetails"])->middleware('auth')->name('viewStudentDetails');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
