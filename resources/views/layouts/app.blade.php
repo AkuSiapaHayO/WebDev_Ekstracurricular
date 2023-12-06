@@ -28,11 +28,7 @@
                             List
                         </a>
                         <ul class="dropdown-menu">
-                            @Auth
-                                @if (Auth::user()->isAdmin() || Auth::user()->isEditor())
-                                    <li><a class="dropdown-item" href="/viewStudent">Student</a></li>
-                                @endif
-                            @endAuth
+                            <li><a class="dropdown-item" href="/viewStudent">Student</a></li>
                             <li><a class="dropdown-item" href="/">Ekstracurricular</a></li>
                         </ul>
                     </li>

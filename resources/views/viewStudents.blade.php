@@ -17,7 +17,11 @@
                         <th scope="col">Birthdate</th>
                         <th scope="col">Nationality</th>
                         <th scope="col">Country</th>
-                        <th scope="col" class="text-center">Action</th>
+                        @Auth
+                            @if (Auth::user()->isAdmin())
+                                <th scope="col" class="text-center">Action</th>
+                            @endif
+                        @endAuth
                     </tr>
                 </thead>
                 @foreach ($students as $i => $student)
@@ -31,13 +35,17 @@
                             <td class="align-middle">{{ $student->birthdate }}</td>
                             <td class="align-middle">{{ $student->nationality }}</td>
                             <td class="align-middle">{{ $student->country }}</td>
-                            <td class="align-middle text-center">
-                                <a href="/student/{{ $student->id }}">
-                                    <button class="btn btn-dark">
-                                        More
-                                    </button>
-                                </a>
-                            </td>
+                            @Auth
+                                @if (Auth::user()->isAdmin())
+                                    <td class="align-middle text-center">
+                                        <a href="/student/{{ $student->id }}">
+                                            <button class="btn btn-dark">
+                                                More
+                                            </button>
+                                        </a>
+                                    </td>
+                                @endif
+                            @endAuth
                         </tr>
                     </tbody>
                     @php($i++)

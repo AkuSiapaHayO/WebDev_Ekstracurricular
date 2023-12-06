@@ -4,6 +4,7 @@ use App\Http\Controllers\EkstracurricularController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +18,16 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"])->name('viewEkstracurricular');
+Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"])->middleware('auth')->name('viewEkstracurricular');
 Route::get("/viewStudent", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
-Route::get("/student/{id}", [StudentController::class,"showStudentDetails"])->middleware('admin')->name('viewStudentDetails');
+Route::group([
+    'middleware' => 'admin',
+    // 'prefix' => 'admin',
+    'as' => 'admin'
+], function() {
+    Route::get("/student/{id}", [AdminStudentController::class,"showStudentDetails"])->middleware('auth')->name('viewStudentDetails');    
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
