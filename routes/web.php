@@ -18,14 +18,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"])->name('viewEkstracurricular');
-Route::group([
-    'middleware' => 'admin',
-    'prefix' => 'admin',
-    'as' => 'admin'
-], function () {
-    Route::get("/viewStudent", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
-    Route::get("/student/{id}", [StudentController::class,"showStudentDetails"])->middleware('auth')->name('viewStudentDetails');
-});
+
+Route::get("/viewStudent", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
+Route::get("/student/{id}", [StudentController::class,"showStudentDetails"])->middleware('auth')->name('viewStudentDetails');
+// Route::group([
+//     'middleware' => 'admin',
+//     'prefix' => 'admin',
+//     'as' => 'admin'
+// ], function () {
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
