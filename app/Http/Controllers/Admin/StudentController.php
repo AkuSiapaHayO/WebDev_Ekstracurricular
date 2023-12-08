@@ -17,7 +17,7 @@ class StudentController extends Controller
             $students = Student::paginate(10);
         }
 
-        return view("viewStudents", [
+        return view("student.view", [
             "students"=> $students
         ]);
     }
@@ -25,7 +25,7 @@ class StudentController extends Controller
     public function showStudentDetails($id)
     {
         // $student = Student::find($id);
-        return view("viewStudentDetails",[
+        return view("student.detail",[
             "pagetitle"=> "Details",
             "maintitle" => "Details",
             "student" => Student::find($id)
