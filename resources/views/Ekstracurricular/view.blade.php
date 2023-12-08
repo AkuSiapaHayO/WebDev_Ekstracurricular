@@ -4,6 +4,18 @@
     <div class="card m-4 mt-5">
         <div class="card-body">
 
+            <div class="text-end">
+                <div class="btn-group" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="Basic Example">
+                        <form method="GET" action="{{ route('ekstracurricular.create') }}">
+                            <button class="btn btn-outline-success" href="{{ route('ekstracurricular.create') }}">
+                                Add Ekstracurricular
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <table class="table table-hover">
                 <thead>
                     <tr>

@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"])->middleware('auth')->name('viewEkstracurricular');
-Route::get("/viewStudent", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
+Route::get("/ekstracurricular/create", [EkstracurricularController::class, "create"])->middleware('auth')->name('ekstracurricular.create');
+Route::get("/student", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
 Route::group([
     'middleware' => 'admin',
     // 'prefix' => 'admin',
@@ -29,7 +30,7 @@ Route::group([
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
