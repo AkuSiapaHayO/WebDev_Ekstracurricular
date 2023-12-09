@@ -20,7 +20,12 @@ use Illuminate\Support\Facades\Auth;
 */
 Route::get("/", [EkstracurricularController::class, "showAllEkstracurriculars"])->middleware('auth')->name('viewEkstracurricular');
 Route::get("/ekstracurricular/create", [EkstracurricularController::class, "create"])->middleware('auth')->name('ekstracurricular.create');
+Route::post("/ekstracurricular/store", [EkstracurricularController::class, "store"])->middleware('auth')->name('ekstracurricular.store');
+Route::get("/ekstracurricular/edit/{ekstracurricular}", [EkstracurricularController::class, "edit"])->middleware('auth')->name('ekstracurricular.edit');
+Route::put("/ekstracurricular/update/{ekstracurricular}", [EkstracurricularController::class, "update"])->middleware('auth')->name('ekstracurricular.update');
+Route::delete("/ekstracurricular/destroy/{ekstracurricular}", [EkstracurricularController::class, "destroy"])->middleware('auth')->name('ekstracurricular.destroy');
 Route::get("/student", [StudentController::class,"showAllStudents"])->middleware('auth')->name('viewStudent');
+
 Route::group([
     'middleware' => 'admin',
     // 'prefix' => 'admin',

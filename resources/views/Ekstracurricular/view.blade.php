@@ -23,7 +23,8 @@
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Tutor</th>
-                        <th scope="col" class="text-center">Requirement</th>
+                        <th scope="col">Requirement</th>
+                        <th scope="col" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,20 @@
                             <td class="align-middle">${{ $ekstracurricular->price }}.00</td>
                             <td class="align-middle">{{ $ekstracurricular->tutor_name }}</td>
                             <td class="align-middle">{{ $ekstracurricular->requirement }}</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <a href="{{ route('ekstracurricular.edit', $ekstracurricular) }}">
+                                        <button class="btn btn-info" id="update" name="update">Update
+                                        </button>
+                                    </a>
+                                    <form action="{{ route('ekstracurricular.destroy', $ekstracurricular) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-warning" id="delete" name="delete">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                         @php($i++)
                     @endforeach
